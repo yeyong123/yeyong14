@@ -1,3 +1,8 @@
 name: Yeyong14
-markdown: rdiscount
-pygments: true
+safe: false
+auto: false
+markdown: redcarpet
+pygments: false
+redcarpet:
+  extensions: [fenced_code_blocks]
+  render_options:

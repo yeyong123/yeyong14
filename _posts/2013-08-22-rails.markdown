@@ -26,10 +26,7 @@ class Products < ActiveRecord::Base
 belongs_to :list
 end
 
-Views _form.html.erb
-<%= collection_selct(:tag, :category_id,  Category.all, :id, :name ) %>
-<%= grouped_collection_select(:tag, :tag_id, Category.all, :tags, :id, :id, :name) %>
-<%= grouped_collection_select(:product, :list_id, Tag.all, :lists, :id, :id, :name) %>
+
 
 {% endhighlight %}
 

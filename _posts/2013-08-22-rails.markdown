@@ -1,14 +1,29 @@
 ---
 layout: post
-title:  "rails!"
+title:  "rails的三级联动"
 date:   2013-08-22 10:51:42
 categories: rails
 ---
 
-这个是一个测试文档。能不能在githubpages显示出来
-现在可以显示了
-在来点代码
-	def show
-		@product = Product.find(params[:id])
-	end
-这样可以显示的出来的吗
+四个模型 category, tag, list, product
+model
+class Categroy < ActiveRecord::Base
+has_many :tags
+end
+
+class Tag < ActiveRecord::Base
+has_many :lists
+belongs_to :category
+end
+
+class List < ActiveRecord::Base
+belongs_to :tag
+has_many :products
+end
+
+class Product < ActiveRecord::Base
+belongs_to :list
+end
+
+views
+

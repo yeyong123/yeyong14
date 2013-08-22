@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 name: Yeyong14
 safe: false
 auto: false
@@ -7,8 +6,3 @@ pygments: false
 redcarpet:
   extensions: [fenced_code_blocks]
   render_options:
-=======
-name: Your New Jekyll Site
-markdown: redcarpet
-pygments: true
->>>>>>> d07c4e9e08758a1a928893f2f9f9a0d8fdca5be3

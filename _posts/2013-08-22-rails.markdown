@@ -5,9 +5,7 @@ date:   2013-08-22 10:51:42
 categories: rails
 ---
 
-```ruby
 	def show
 		@product = Product(params[:id])
 	end
-```
 

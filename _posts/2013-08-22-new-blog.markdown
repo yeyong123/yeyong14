@@ -1,24 +1,79 @@
 ---
 layout: post
-title:  "new blog!"
+title:  "三级联动"
 date:   2013-08-22 10:51:42
-categories: jekyll update
+categories: rails select_tag
 ---
 
-You'll find this post in your `_posts` directory - edit this post and re-build (or run with the `-w` switch) to see your changes!
-To add new posts, simply add a file in the `_posts` directory that follows the convention: YYYY-MM-DD-name-of-post.ext.
-
-Jekyll also offers powerful support for code snippets:
-
+有四个模型分别是Category,Tag, List, Product
+先确定他们的关系
 {% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
+model
+class Category <  ActiveRecord::Base
+has_many :tags
+
+class Tag < ActiveRecord::Base
+belongs_to :category
+has_many :lists
+
+class List < ActiveRecord::Base
+belongs_to :tag
+has_many :products
+
+class Products < ActiveRecord::Base
+belongs_to :list
+
+Views _form.html.erb
+<%= collection_selct(:tag, :category_id,  Category.all, :id, :name ) %>
+<%= grouped_collection_select(:tag, :tag_id, Category.all, :tags, :id, :id, :name) %>
+<%= grouped_collection_select(:product, :list_id, Tag.all, :lists, :id, :id, :name) %>
+
+
 {% endhighlight %}
 
-Check out the [Jekyll docs][jekyll] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll's GitHub repo][jekyll-gh].
+<script type="text/javascript">
 
-[jekyll-gh]: https://github.com/mojombo/jekyll
-[jekyll]:    http://jekyllrb.com
+$(document).ready(function(){
+	$('.test1').linkSelect();
+		$('#tag_tag_id').linkSelect();
+	$('#product_list_id').linkSelect();
+
+		});
+	</script>
+
+在加入javascript的代码
+app/assets/javasripts
+<script>
+$.fn.linkSelect = function (num){
+	if (!num) num = 1;
+	var all_select = document.getElementsByTagName('select');
+	this.each(function(i){
+		new linkSelect(this, all_select, num);
+	});
+	all_select = null;
+
+	function linkSelect(obj, all_select, num){
+		var obj1_index = 0;
+		for (i =0; i < all_select.length; i++){
+			if (all_select[i] == obj){
+				obj1_index = i;
+			}
+		}
+		obj1_index = (obj1_index - num) > -1 ? obj1_index - num : 0;
+		this.obj1 = $(all_select[obj1_index]);
+		this.obj2 = $(obj);
+		var obj3 = $('<select disabled="disabled">' + this.obj2.html() + '</select>');
+		this.elems = obj3[0].getElementsByTagName('optgroup');
+		this.obj2.html(this.obj2.get(0).options[this.obj2.get(0).selectedIndex].parentNode.innerHTML);  
+		var self = this;
+		this.obj1.change(function(){
+			self.obj2.html('');
+			for (var i = 0; i < self.elems.length; i++){
+				if (self.elems[i].label == this.value){
+					self.obj2.html(self.elems[i].innerHTML);
+					self.obj2.change();
+				}
+			}
+
+</script>
+

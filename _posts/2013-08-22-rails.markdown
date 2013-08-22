@@ -5,12 +5,9 @@ date:   2013-08-22 10:51:42
 categories: rails
 ---
 
-
-{% highlight ruby %}
-
+```ruby
 	def show
 		@product = Product(params[:id])
 	end
-
-{% endhighlight %}
+```
 

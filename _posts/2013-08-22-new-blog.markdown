@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "rails_selct_tag"
+title:  "rails select tag"
 date:   2013-08-22 10:51:42
-categories: rails select_tag
+categories: rails
 ---
 
 有四个模型分别是Category,Tag, List, Product
@@ -27,9 +27,6 @@ Views _form.html.erb
 <%= collection_selct(:tag, :category_id,  Category.all, :id, :name ) %>
 <%= grouped_collection_select(:tag, :tag_id, Category.all, :tags, :id, :id, :name) %>
 <%= grouped_collection_select(:product, :list_id, Tag.all, :lists, :id, :id, :name) %>
-
-
-{% endhighlight %}
 
 <script type="text/javascript">
 
@@ -76,4 +73,6 @@ $.fn.linkSelect = function (num){
 			}
 
 </script>
+
+{% endhighlight %}
 

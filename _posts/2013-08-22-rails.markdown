@@ -10,17 +10,21 @@ categories: rails
 model
 class Category <  ActiveRecord::Base
 has_many :tags
+end
 
 class Tag < ActiveRecord::Base
 belongs_to :category
 has_many :lists
+end
 
 class List < ActiveRecord::Base
 belongs_to :tag
 has_many :products
+end
 
 class Products < ActiveRecord::Base
 belongs_to :list
+end
 
 Views _form.html.erb
 <%= collection_selct(:tag, :category_id,  Category.all, :id, :name ) %>

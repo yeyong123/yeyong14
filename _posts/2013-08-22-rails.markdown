@@ -6,3 +6,9 @@ categories: rails
 ---
 
 这个是一个测试文档。能不能在githubpages显示出来
+现在可以显示了
+在来点代码
+	def show
+		@product = Product.find(params[:id])
+	end
+这样可以显示的出来的吗

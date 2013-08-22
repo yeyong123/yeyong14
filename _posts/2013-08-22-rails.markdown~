@@ -7,7 +7,7 @@ categories: rails
 
 
 {% highlight ruby %}
-model
+#model
 class Category <  ActiveRecord::Base
 has_many :tags
 end

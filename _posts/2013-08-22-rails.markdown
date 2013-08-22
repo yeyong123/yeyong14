@@ -6,5 +6,11 @@ categories: rails
 ---
 
 
-hsjsjsjsj
+{% highlight ruby %}
+
+	def show
+		@product = Product(params[:id])
+	end
+
+{% endhighlight %}
 

@@ -35,9 +35,15 @@
       {% else %}
         <li class="prev disabled"><a>&larr; 上一篇</a></li>
       {% endif %}
+<<<<<<< HEAD
         <li><a href="{{ BASE_PATH }}{{ site.JB.archive_path }}">Ar文章</a></li>
       {% if page.next %}
         <li class="next"><a href="{{ BASE_PATH }}{{ page.next.url }}" title="{{ page.next.title }}">下一篇 &rarr;</a></li>
+=======
+        <li><a href="{{ BASE_PATH }}{{ site.JB.archive_path }}">文章</a></li>
+      {% if page.next %}
+        <li class="next"><a href="{{ BASE_PATH }}{{ page.next.url }}" title="{{ page.next.title }}">下一篇&rarr;</a></li>
+>>>>>>> 7a9a21a4ed35a0da6348390dd6aef9c2bc39038e
       {% else %}
         <li class="next disabled"><a>下一篇 &rarr;</a>
       {% endif %}

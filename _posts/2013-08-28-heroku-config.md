@@ -9,12 +9,13 @@ tags: ["heroku"]
 
 今天部署heroku的时候遇到的问题，记录下来。作为下次的参考
 参照Ruby-china的上面的`heroku push`
+
 ```ruby
 
 heroku plugins:install https://github.com/ddollar/heroku-push
  heroku push
  ```
- 这样可以满足`push`上了，今天我遇到是是
+ 这样可以满足`push`上了，今天我遇到是
 
  ```ruby
  Running: rake assets:precompile     
@@ -26,13 +27,16 @@ heroku plugins:install https://github.com/ddollar/heroku-push
  解决的方法的是在`config/appliaction.rb`下面加入
  `config.assets.initialize_on_precompile = false`
 
- 重新提交部署，有出现
+ 重新提交部署,又出现
+
  ```ruby
 
  rake aborted! 
  Invalid DATABASE_URL (erb):9:in rescue in <main> (erb):6:in <main>)
  ```
+
 这个有点麻烦，搞了很长时间。
+
 
 ```ruby
 heroku addons:add heroku-postgresql:dev --app yehyork(我的数据库名称)

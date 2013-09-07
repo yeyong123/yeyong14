@@ -43,21 +43,16 @@ class ApplicationControlleer < ActiveController:Base
 	#可能明天就看不懂
 		if user_signed_in? && current_user #首先先检查用户有没有登录
 			if current_user.cart.nil?				 #用户已经登录但在数据库没有找到与这个用户相关联的购物车。
-				Cart.find(session[:cart_id])   # 就为这个用户创建一个ID
+			@cart = current_user.create_cart  # 就为这个用户创建一个ID
 			else
 				Cart.find_by_user_id(session[:user_id]) # 否则就找到这个购物车中用户的ID。
 			end
 		end
-		unless user_signed_in?								#如果用户没有登录
+				#如果用户没有登录
 			Cart.find(session[:cart_id])				#就为这个访客建立一个会话
-		end
-		rescue ActiveRecord::RecordNotFound		#如果这个临时的会话没有找到就拦截这个没有会话的错误。
-		if user_signed_in? && current_user		#这个是判断语句，判断用户登录之后没有找到用户购物车的拦截错误语句，新用户没有
-			@cart = current_user.create_cart		#找到就建立一个新的用户购物车
-		else
-			@cart = Cart.create									#判断没有登录的用户的创建购物车
-		end
-		session[:cart_id] = @cart.id					#将创建购物车ID，赋值给会话中
+			rescue ActiveRecord::RecordNotFound		#如果这个临时的会话没有找到就拦截这个没有会话的错误。
+									@cart = Cart.create									#判断没有登录的用户的创建购物车
+			session[:cart_id] = @cart.id					#将创建购物车ID，赋值给会话中
 		@cart
 	end
 end
@@ -98,7 +93,7 @@ end
 最后路由定义下
 
 ```ruby
-resource :cart
+resources :carts
 ```
 
 Views里面添加

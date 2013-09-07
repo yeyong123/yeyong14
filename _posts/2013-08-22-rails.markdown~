@@ -1,0 +1,32 @@
+---
+layout: post
+title:  "rails!"
+date:   2013-08-22 10:51:42
+categories: rails
+---
+
+
+{% highlight ruby %}
+#model
+class Category <  ActiveRecord::Base
+has_many :tags
+end
+
+class Tag < ActiveRecord::Base
+belongs_to :category
+has_many :lists
+end
+
+class List < ActiveRecord::Base
+belongs_to :tag
+has_many :products
+end
+
+class Products < ActiveRecord::Base
+belongs_to :list
+end
+
+
+
+{% endhighlight %}
+

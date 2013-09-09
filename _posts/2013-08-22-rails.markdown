@@ -31,27 +31,27 @@ end
 ```
 **views**
 
-```
+```erb
 _from_html.erb
 
 <%= collection_select(:tag, :category_id, Category.all, :id,  :name) %>
-<%= grouped_collection_select(:tag, :categroy_id, Category.all, :tags, :id, :id, :name) %>
+<%= grouped_collection_select(:tag, :tag_id, Category.all, :tags, :id, :id, :name) %>
 <%= grouped_collection_select(:product, :list_id, Tag.all, :lists, :id, :id, :name) %>
 ```
 
 我就直接在视图里面调用js
+`app/views/products/_from.html.erb`
 
-```
+```js
 	$(document).ready(function(){
 			$('#tag_tag_id').linkSelect();
-			$('#tag_product_id').linkSelect();
+			$('#product_list_id').linkSelect();
 		});
 </script>
 ```
-app/assets/javascripts
+app/assets/javascripts/product.js
 
-```
-
+```js
 $.fn.linkSelect = function (num){
 	if (!num) num = 1;
 	var all_select = document.getElementsByTagName('select');
@@ -59,6 +59,7 @@ $.fn.linkSelect = function (num){
 			new linkSelect(this, all_select, num);
 			});
 	all_select = null;
+
 	function linkSelect(obj, all_select, num){
 		var obj1_index = 0;
 		for (i =0; i < all_select.length; i++){
@@ -84,7 +85,6 @@ $.fn.linkSelect = function (num){
 				});  
 	}
 }
-
 ```
 
 

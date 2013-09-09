@@ -34,9 +34,9 @@ end
 ```
 _from_html.erb
 
-<%= collect_select(:tag, :category_id, Category.all, :id, :id, :name) %>
-<%= grouped_collect_select(:tag, :categroy_id, Category.all, :tags, :id, :id, :name) %>
-<%= grouped_collect_select(:product, :list_id, Tag.all, :lists, :id, :id, :name) %>
+<%= collection_select(:tag, :category_id, Category.all, :id,  :name) %>
+<%= grouped_collection_select(:tag, :categroy_id, Category.all, :tags, :id, :id, :name) %>
+<%= grouped_collection_select(:product, :list_id, Tag.all, :lists, :id, :id, :name) %>
 ```
 
 我就直接在视图里面调用js

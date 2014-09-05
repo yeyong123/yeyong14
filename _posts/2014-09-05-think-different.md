@@ -24,12 +24,9 @@ tags: []
 
 ```ruby
 class Myclass
-	
 	def class << self
 		self
 	end
 end
-
 ```
-
 ![宝贝女儿]({{ site.image_url }}/1.jpg)

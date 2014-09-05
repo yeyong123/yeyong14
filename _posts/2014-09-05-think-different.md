@@ -22,4 +22,14 @@ tags: []
 ------
 ##### 经常访问技术性网站[ruby-china]("http://ruby-china.org")
 
+```ruby
+class Myclass
+	
+	def class << self
+		self
+	end
+end
+
+```
+
 ![宝贝女儿]({{ site.image_url }}/1.jpg)

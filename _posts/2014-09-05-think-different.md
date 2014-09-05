@@ -21,3 +21,5 @@ tags: []
 	-	 this is number 2
 ------
 ##### 经常访问技术性网站[ruby-china]("http://ruby-china.org")
+
+![宝贝女儿]({{ site.image_url }}/1.jpg)

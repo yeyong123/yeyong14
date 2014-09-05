@@ -1,0 +1,6 @@
+rake page           # Create a new page
+rake post           # Begin a new post in ./_posts
+rake preview        # Launch preview environment
+rake theme:install  # Install theme
+rake theme:package  # Package theme
+rake theme:switch   # Switch between Jekyll-bootstrap themes

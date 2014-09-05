@@ -1,0 +1,101 @@
+---
+layout: post
+title: "分类导航"
+data: 2013-08-22 18:45
+categories: rails
+---
+做一个三级分类
+有`category`,`tag`,`list`;
+现在的想法是链接`category`时找出所有与只关联的`tag`，
+`list`和`products;`
+点击`tag`，就找出所关联的`list`，和`products.
+
+##首先定义模型
+models
+
+```ruby
+class Category < ActiveRecord::Base
+attr_accessbile :name
+
+has_many :tags
+end
+
+class Tag < ActiveRecord::Base
+attr_accessbile :name, :category_id
+
+belongs_to :category
+has_many :lists
+end
+
+class List < ActiveRecord::Base
+attr_accessbile :name, :tag_id
+belongs_to :tag
+has_many :products
+end
+
+class Product < ActiveRecord::Base
+attr_accessbile :list_id, :title, :number
+belongs_to :list
+end
+
+```
+**controller**
+
+```ruby
+
+class ProductsController < ApplicationController
+
+	def index
+		unless params[:t]
+			@products = Product.order("id desc").paginate(page: params[:page],
+					per_page: 24)
+		else
+			@products = where("list_id = ?", 
+					params[:t]).order("id desc").pageinate(page: params[:page], 
+						per_page: 24)
+			end
+		end
+#
+#
+#
+end
+
+class CategoriesController < ApplicationController
+
+	def index
+		@category = Category.find(params[:id])
+	end
+
+	def tag
+		@list = List.where("tag_id = ?", params[:t])
+	end
+end
+
+```
+因为先加了一个控制器行为所以要指定路由
+
+`config/route.rb`
+
+```ruby
+#
+#
+#
+resoures :categories
+match 'tag', to: 'category#tag'
+
+```
+**Views**
+
+```ruby
+
+<%= Category.all.each do |cate| %>
+	<%= link_to cate.name, categories_path %>
+		<%= cate.tags.each do |tag| %>
+			<%= link_to tag.name, tag_path %>
+				<%= tag.lists.each do |list| %>
+					<%= link_to list.name, products_path(t:list) %>
+		<% end %>
+	<% end %>
+<% end %>
+
+```

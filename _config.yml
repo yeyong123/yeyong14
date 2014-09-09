@@ -5,7 +5,7 @@ image_url: /yeyong14/assets/images
 exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
 auto: false
 markdown: redcarpet
-pygments: true
+pygments: false
 #redcarpet:
 # extensions: [fenced_code_blocks]
 # render_options:
